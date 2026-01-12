@@ -17,8 +17,14 @@
       --card:#FFFFFF;
       --radius:18px;
       --max:1140px;
+
+      --shadow: 0 10px 28px rgba(11,42,74,.08);
+      --shadowHover: 0 18px 46px rgba(11,42,74,.14);
+      --ease: cubic-bezier(.2,.8,.2,1);
     }
+
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
@@ -26,26 +32,33 @@
       background:#fff;
     }
     a{color:inherit}
+
     .wrap{max-width:var(--max); margin:0 auto; padding:0 20px;}
+
     .btn{
       display:inline-flex; align-items:center; gap:8px;
       padding:12px 16px; border-radius:999px;
       text-decoration:none; border:1px solid var(--line);
-      font-weight:700;
+      font-weight:800;
       background:#fff;
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease);
+      will-change: transform;
     }
     .btn.primary{background:var(--navy); color:#fff; border-color:var(--navy);}
     .btn.ghost{background:transparent;}
+    .btn:hover{transform: translateY(-1px); box-shadow: 0 12px 26px rgba(11,42,74,.10);}
+    .btn.primary:hover{box-shadow: 0 16px 34px rgba(11,42,74,.18);}
+
     .chip{
       display:inline-flex; align-items:center;
       padding:6px 10px; border-radius:999px;
       background:rgba(18,59,102,.08);
       color:var(--navy2);
-      font-size:12px; font-weight:800;
+      font-size:12px; font-weight:900;
       letter-spacing:.02em;
     }
 
-    /* Top nav */
+    /* Header / Nav */
     header{
       background: linear-gradient(180deg, var(--sky), #fff 70%);
       border-bottom:1px solid var(--line);
@@ -54,14 +67,12 @@
       padding:16px 0;
       display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
-    .brand{
-      display:flex; flex-direction:column; gap:2px;
-    }
+    .brand{display:flex; flex-direction:column; gap:2px;}
     .brand .name{font-weight:900; letter-spacing:.02em}
     .brand .role{font-size:12px; color:var(--muted)}
     .navlinks{display:flex; gap:10px; flex-wrap:wrap;}
 
-    /* Hero (image-first) */
+    /* Hero */
     .hero{
       padding:26px 0 44px;
       display:grid;
@@ -82,12 +93,20 @@
       max-width:62ch;
     }
     .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;}
+
     .hero-card{
       border:1px solid var(--line);
       border-radius:var(--radius);
       background:var(--card);
-      box-shadow:0 10px 28px rgba(11,42,74,.08);
+      box-shadow:var(--shadow);
       overflow:hidden;
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+      will-change: transform;
+    }
+    .hero-card:hover{
+      transform: translateY(-4px) scale(1.01);
+      box-shadow:var(--shadowHover);
+      border-color: rgba(11,42,74,.18);
     }
     .hero-img{
       width:100%;
@@ -113,7 +132,7 @@
     .section-title h2{margin:0; font-size:20px; letter-spacing:-.01em}
     .section-title p{margin:0; color:var(--muted); line-height:1.6; max-width:80ch}
 
-    /* Cards grid */
+    /* Grid cards */
     .grid{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
@@ -125,30 +144,36 @@
       background:var(--card);
       padding:16px;
       box-shadow:0 8px 22px rgba(11,42,74,.06);
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+      will-change: transform;
+    }
+    .card:hover{
+      transform: translateY(-5px) scale(1.01);
+      box-shadow:var(--shadowHover);
+      border-color: rgba(11,42,74,.18);
     }
     .col4{grid-column:span 4;}
     .col6{grid-column:span 6;}
     .col12{grid-column:span 12;}
     .card h3{margin:0 0 6px; font-size:16px}
     .card p{margin:0; color:var(--muted); line-height:1.6}
+
+    /* Service icons */
     .icon{
       width:38px; height:38px; border-radius:12px;
       background:rgba(11,42,74,.08);
       display:flex; align-items:center; justify-content:center;
-      color:var(--navy2);
-      font-weight:900;
       margin-bottom:10px;
     }
+    .icon img{width:22px; height:22px; display:block}
 
     /* Process */
     .process{
-      background: #fff;
+      background:#fff;
       border-top:1px solid var(--line);
       border-bottom:1px solid var(--line);
     }
-    .step{
-      display:flex; gap:12px; align-items:flex-start;
-    }
+    .step{display:flex; gap:12px; align-items:flex-start;}
     .step .num{
       width:34px; height:34px; border-radius:12px;
       background:var(--navy); color:#fff;
@@ -163,18 +188,29 @@
       gap:16px;
     }
     .tile{
+      display:block;
       border:1px solid var(--line);
       border-radius:var(--radius);
       overflow:hidden;
       background:#fff;
       box-shadow:0 8px 22px rgba(11,42,74,.06);
+      text-decoration:none;
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease);
+      will-change: transform;
+      position:relative;
+    }
+    .tile:hover{
+      transform: translateY(-6px) scale(1.015);
+      box-shadow:var(--shadowHover);
+      border-color: rgba(11,42,74,.18);
     }
     .thumb{
       width:100%;
       aspect-ratio:16/9;
       border:0;
-      background:#F3F7FF;
       display:block;
+      object-fit:cover;
+      background:#F3F7FF;
     }
     .meta{padding:12px 14px;}
     .meta .title{font-weight:900}
@@ -184,7 +220,27 @@
       color:var(--navy2); font-weight:900;
     }
 
-    /* Logos / industries */
+    /* Hover overlay (View Demo) */
+    .overlay{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:rgba(11,42,74,.45);
+      opacity:0;
+      transition: opacity .25s var(--ease);
+    }
+    .tile:hover .overlay{opacity:1}
+    .overlay span{
+      background:#fff;
+      border-radius:999px;
+      padding:10px 14px;
+      font-weight:900;
+      border:1px solid rgba(255,255,255,.35);
+    }
+
+    /* Industries */
     .pill-row{display:flex; flex-wrap:wrap; gap:10px;}
     .pill{
       padding:10px 12px;
@@ -192,8 +248,14 @@
       border-radius:999px;
       background:#fff;
       color:var(--muted);
-      font-weight:700;
+      font-weight:800;
       box-shadow:0 6px 18px rgba(11,42,74,.04);
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease);
+    }
+    .pill:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(11,42,74,.10);
+      border-color: rgba(11,42,74,.18);
     }
 
     /* Contact */
@@ -213,6 +275,18 @@
       border-top:1px solid var(--line);
     }
 
+    /* Scroll fade animation */
+    .reveal{
+      opacity:0;
+      transform: translateY(14px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+      will-change: opacity, transform;
+    }
+    .reveal.show{
+      opacity:1;
+      transform: translateY(0);
+    }
+
     @media (max-width: 980px){
       .hero{grid-template-columns:1fr; padding-bottom:32px;}
       h1{font-size:30px}
@@ -227,7 +301,7 @@
 
 <header>
   <div class="wrap">
-    <div class="nav">
+    <div class="nav reveal">
       <div class="brand">
         <div class="name">CHUCHU LEARNING</div>
         <div class="role">Interactive eLearning • Training Simulations • Storyline/Rise</div>
@@ -241,7 +315,7 @@
     </div>
 
     <div class="hero">
-      <div>
+      <div class="reveal">
         <span class="chip">Blue / navy brand • clean & modern</span>
         <h1>Interactive eLearning that trains real-world performance</h1>
         <p class="sub">
@@ -254,11 +328,10 @@
         </div>
       </div>
 
-      <div class="hero-card">
-        <!-- Replace this image with your own hero visual (laptop mockup / eLearning screenshot) -->
-        <img class="hero-img" src="HERO_IMAGE_URL_HERE" alt="eLearning preview" />
+      <div class="hero-card reveal">
+        <img class="hero-img" src="/chuchu916/hero.png" alt="eLearning preview" />
         <div class="hero-caption">
-          Tip: Use a clean mockup image (laptop/tablet) or a polished screenshot from your best module.
+          Click the portfolio thumbnails below to view demos.
         </div>
       </div>
     </div>
@@ -267,28 +340,34 @@
 
 <section id="services">
   <div class="wrap">
-    <div class="section-title">
+    <div class="section-title reveal">
       <div>
         <h2>Services</h2>
-        <p>Short, clear, and visual. Each service is one line so it stays easy to edit.</p>
+        <p>Clear service blocks with icons. Hover to highlight.</p>
       </div>
     </div>
 
     <div class="grid">
-      <div class="card col4">
-        <div class="icon">E</div>
+      <div class="card col4 reveal">
+        <div class="icon">
+          <img src="/chuchu916/icon-elearning.svg" alt="eLearning icon" />
+        </div>
         <h3>eLearning Development</h3>
         <p>Storyline/Rise builds with modern interactions and clean UI.</p>
       </div>
 
-      <div class="card col4">
-        <div class="icon">S</div>
+      <div class="card col4 reveal">
+        <div class="icon">
+          <img src="/chuchu916/icon-simulation.svg" alt="Simulation icon" />
+        </div>
         <h3>Training Simulations</h3>
         <p>Step-by-step SOP practice for kitchen, barista, and operations.</p>
       </div>
 
-      <div class="card col4">
-        <div class="icon">C</div>
+      <div class="card col4 reveal">
+        <div class="icon">
+          <img src="/chuchu916/icon-scenario.svg" alt="Scenario icon" />
+        </div>
         <h3>Scenario-Based Training</h3>
         <p>Branching decisions for service, communication, and workplace behavior.</p>
       </div>
@@ -298,15 +377,15 @@
 
 <section class="process" id="process">
   <div class="wrap">
-    <div class="section-title">
+    <div class="section-title reveal">
       <div>
         <h2>How We Work</h2>
-        <p>Four steps. Minimal text. Easy for clients to understand and trust.</p>
+        <p>Four steps. Simple, transparent delivery process.</p>
       </div>
     </div>
 
     <div class="grid">
-      <div class="card col6">
+      <div class="card col6 reveal">
         <div class="step">
           <div class="num">1</div>
           <div>
@@ -316,7 +395,7 @@
         </div>
       </div>
 
-      <div class="card col6">
+      <div class="card col6 reveal">
         <div class="step">
           <div class="num">2</div>
           <div>
@@ -326,7 +405,7 @@
         </div>
       </div>
 
-      <div class="card col6">
+      <div class="card col6 reveal">
         <div class="step">
           <div class="num">3</div>
           <div>
@@ -336,7 +415,7 @@
         </div>
       </div>
 
-      <div class="card col6">
+      <div class="card col6 reveal">
         <div class="step">
           <div class="num">4</div>
           <div>
@@ -351,118 +430,119 @@
 
 <section id="work">
   <div class="wrap">
-    <div class="section-title">
+    <div class="section-title reveal">
       <div>
         <h2>Portfolio</h2>
-        <p>Replace the 10 placeholder embed URLs with your YouTube/Vimeo embeds.</p>
+        <p>9 projects. Click any thumbnail to open the demo link.</p>
       </div>
     </div>
 
     <div class="portfolio">
-      <!-- Replace VIDEO_EMBED_URL_01 with: https://www.youtube.com/embed/VIDEO_ID -->
-      <div class="tile">
-        <iframe class="thumb" src="VIDEO_EMBED_URL_01" allowfullscreen></iframe>
+      <!-- All 9 use the same link for now -->
+      <!-- Replace later with your own individual demo links -->
+      <a class="tile reveal" href="https://www.youtube.com/watch?v=bxMeeaFy5Fc" target="_blank" rel="noreferrer">
+        <img class="thumb" src="/chuchu916/p1.png" alt="Project 1 thumbnail" />
+        <div class="overlay"><span>View demo</span></div>
         <div class="meta">
-          <div class="title">Food Safety Training</div>
-          <div class="desc">Interactive practice module for hygiene and quality standards.</div>
-          <div class="tag">Simulation</div>
+          <div class="title">Project 1</div>
+          <div class="desc">Interactive eLearning module</div>
+          <div class="tag">Storyline</div>
         </div>
-      </div>
+      </a>
 
-      <div class="tile">
-        <iframe class="thumb" src="VIDEO_EMBED_URL_02" allowfullscreen></iframe>
+      <a class="tile reveal" href="https://www.youtube.com/watch?v=bxMeeaFy5Fc" target="_blank" rel="noreferrer">
+        <img class="thumb" src="/chuchu916/p2.png" alt="Project 2 thumbnail" />
+        <div class="overlay"><span>View demo</span></div>
         <div class="meta">
-          <div class="title">Kitchen SOP Workflow</div>
-          <div class="desc">Step-by-step workflow practice to reduce errors and rework.</div>
-          <div class="tag">Operations</div>
-        </div>
-      </div>
-
-      <div class="tile">
-        <iframe class="thumb" src="VIDEO_EMBED_URL_03" allowfullscreen></iframe>
-        <div class="meta">
-          <div class="title">Beverage / Barista Workflow</div>
-          <div class="desc">Order-to-delivery simulation for speed and consistency.</div>
-          <div class="tag">F&amp;B</div>
-        </div>
-      </div>
-
-      <div class="tile">
-        <iframe class="thumb" src="VIDEO_EMBED_URL_04" allowfullscreen></iframe>
-        <div class="meta">
-          <div class="title">Customer Service Scenarios</div>
-          <div class="desc">Branching decisions for challenging customer interactions.</div>
+          <div class="title">Project 2</div>
+          <div class="desc">Scenario-based training</div>
           <div class="tag">Scenario</div>
         </div>
-      </div>
+      </a>
 
-      <div class="tile">
-        <iframe class="thumb" src="VIDEO_EMBED_URL_05" allowfullscreen></iframe>
+      <a class="tile reveal" href="https://www.youtube.com/watch?v=bxMeeaFy5Fc" target="_blank" rel="noreferrer">
+        <img class="thumb" src="/chuchu916/p3.png" alt="Project 3 thumbnail" />
+        <div class="overlay"><span>View demo</span></div>
         <div class="meta">
-          <div class="title">Communication Microlearning</div>
-          <div class="desc">Short lessons with quick checks for understanding.</div>
-          <div class="tag">Soft Skills</div>
+          <div class="title">Project 3</div>
+          <div class="desc">Training simulation</div>
+          <div class="tag">Simulation</div>
         </div>
-      </div>
+      </a>
 
-      <div class="tile">
-        <iframe class="thumb" src="VIDEO_EMBED_URL_06" allowfullscreen></iframe>
+      <a class="tile reveal" href="https://www.youtube.com/watch?v=bxMeeaFy5Fc" target="_blank" rel="noreferrer">
+        <img class="thumb" src="/chuchu916/p4.png" alt="Project 4 thumbnail" />
+        <div class="overlay"><span>View demo</span></div>
         <div class="meta">
-          <div class="title">Compliance / Awareness</div>
-          <div class="desc">Engaging compliance training with modern interactions.</div>
-          <div class="tag">Corporate</div>
+          <div class="title">Project 4</div>
+          <div class="desc">Food safety & compliance</div>
+          <div class="tag">Compliance</div>
         </div>
-      </div>
+      </a>
 
-      <div class="tile">
-        <iframe class="thumb" src="VIDEO_EMBED_URL_07" allowfullscreen></iframe>
+      <a class="tile reveal" href="https://www.youtube.com/watch?v=bxMeeaFy5Fc" target="_blank" rel="noreferrer">
+        <img class="thumb" src="/chuchu916/p5.png" alt="Project 5 thumbnail" />
+        <div class="overlay"><span>View demo</span></div>
         <div class="meta">
-          <div class="title">Interactive Quiz Game</div>
-          <div class="desc">Game-style checks to improve completion and recall.</div>
-          <div class="tag">Game</div>
+          <div class="title">Project 5</div>
+          <div class="desc">Customer service training</div>
+          <div class="tag">Soft skills</div>
         </div>
-      </div>
+      </a>
 
-      <div class="tile">
-        <iframe class="thumb" src="VIDEO_EMBED_URL_08" allowfullscreen></iframe>
+      <a class="tile reveal" href="https://www.youtube.com/watch?v=bxMeeaFy5Fc" target="_blank" rel="noreferrer">
+        <img class="thumb" src="/chuchu916/p6.png" alt="Project 6 thumbnail" />
+        <div class="overlay"><span>View demo</span></div>
         <div class="meta">
-          <div class="title">Onboarding Module</div>
-          <div class="desc">Role-ready onboarding with practice activities and quiz.</div>
+          <div class="title">Project 6</div>
+          <div class="desc">Microlearning module</div>
+          <div class="tag">Rise</div>
+        </div>
+      </a>
+
+      <a class="tile reveal" href="https://www.youtube.com/watch?v=bxMeeaFy5Fc" target="_blank" rel="noreferrer">
+        <img class="thumb" src="/chuchu916/p7.png" alt="Project 7 thumbnail" />
+        <div class="overlay"><span>View demo</span></div>
+        <div class="meta">
+          <div class="title">Project 7</div>
+          <div class="desc">Onboarding training</div>
           <div class="tag">Onboarding</div>
         </div>
-      </div>
+      </a>
 
-      <div class="tile">
-        <iframe class="thumb" src="VIDEO_EMBED_URL_09" allowfullscreen></iframe>
+      <a class="tile reveal" href="https://www.youtube.com/watch?v=bxMeeaFy5Fc" target="_blank" rel="noreferrer">
+        <img class="thumb" src="/chuchu916/p8.png" alt="Project 8 thumbnail" />
+        <div class="overlay"><span>View demo</span></div>
         <div class="meta">
-          <div class="title">Product Knowledge</div>
-          <div class="desc">Interactive product training with quick recall moments.</div>
-          <div class="tag">Product</div>
+          <div class="title">Project 8</div>
+          <div class="desc">Interactive quiz & game</div>
+          <div class="tag">Game</div>
         </div>
-      </div>
+      </a>
 
-      <div class="tile">
-        <iframe class="thumb" src="VIDEO_EMBED_URL_10" allowfullscreen></iframe>
+      <a class="tile reveal" href="https://www.youtube.com/watch?v=bxMeeaFy5Fc" target="_blank" rel="noreferrer">
+        <img class="thumb" src="/chuchu916/p9.png" alt="Project 9 thumbnail" />
+        <div class="overlay"><span>View demo</span></div>
         <div class="meta">
-          <div class="title">Interaction Showcase</div>
-          <div class="desc">Layers, drag-and-drop, and click-to-reveal patterns.</div>
+          <div class="title">Project 9</div>
+          <div class="desc">Custom Storyline interactions</div>
           <div class="tag">Interactions</div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="section-title">
+    <div class="section-title reveal">
       <div>
         <h2>Industries</h2>
-        <p>Quick credibility. Keep it simple.</p>
+        <p>Quick credibility, clean layout.</p>
       </div>
     </div>
 
-    <div class="pill-row">
+    <div class="pill-row reveal">
       <div class="pill">Food &amp; Beverage</div>
       <div class="pill">Retail</div>
       <div class="pill">Hospitality</div>
@@ -475,7 +555,7 @@
 
 <section class="contact" id="contact">
   <div class="wrap">
-    <div class="section-title">
+    <div class="section-title reveal">
       <div>
         <h2>Contact</h2>
         <p>One place for clients to reach you fast.</p>
@@ -483,20 +563,22 @@
     </div>
 
     <div class="grid">
-      <div class="card col6">
+      <div class="card col6 reveal">
         <h3>Let’s discuss your training goals</h3>
-        <p style="margin-top:6px;">Share audience, topic, timeline, and preferred delivery (LMS/web). I’ll respond with a quick plan and quote range.</p>
+        <p style="margin-top:6px; color:var(--muted); line-height:1.65;">
+          Share audience, topic, timeline, and preferred delivery (LMS/web). I’ll respond with a quick plan and quote range.
+        </p>
         <div class="cta" style="margin-top:14px;">
           <a class="btn primary" href="mailto:chuchu916elearning@gmail.com?subject=eLearning%20Project%20Inquiry">Email</a>
           <a class="btn" href="https://wa.me/84972525073" target="_blank" rel="noreferrer">WhatsApp</a>
         </div>
       </div>
 
-      <div class="card col6">
+      <div class="card col6 reveal">
         <div class="contact-box">
           <div><b>Email:</b> chuchu916elearning@gmail.com</div>
           <div><b>WhatsApp:</b> +84 972 525 073</div>
-          <div><b>Website:</b> www.chuchuelearning.com</div>
+          <div><b>Website:</b> chuchuelearning.com</div>
           <div><b>Response time:</b> within 24–48 hours</div>
         </div>
       </div>
@@ -509,7 +591,26 @@
 </footer>
 
 <script>
+  // Year
   document.getElementById("y").textContent = new Date().getFullYear();
+
+  // Reveal on scroll (fade from top to bottom)
+  const reveals = Array.from(document.querySelectorAll('.reveal'));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach((el, i) => {
+    // Stagger slightly for a smooth cascade
+    el.style.transitionDelay = (Math.min(i, 12) * 60) + 'ms';
+    observer.observe(el);
+  });
 </script>
 
 </body>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chuchu Learning — eLearning Course Developer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chuchu Learning — Interactive eLearning</title>
   <meta name="description" content="Interactive eLearning and training simulations for food, retail, and corporate teams." />
 
   <style>
@@ -13,9 +13,10 @@
       --sky:#EAF2FF;
       --ink:#0B1220;
       --muted:#4B5563;
-      --line:#E5EAF3;
-      --radius:16px;
-      --max:1120px;
+      --line:#E6ECF6;
+      --card:#FFFFFF;
+      --radius:18px;
+      --max:1140px;
     }
     *{box-sizing:border-box}
     body{
@@ -27,68 +28,132 @@
     a{color:inherit}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 20px;}
     .btn{
-      display:inline-block; padding:12px 16px; border-radius:999px;
-      text-decoration:none; border:1px solid var(--line); font-weight:650;
+      display:inline-flex; align-items:center; gap:8px;
+      padding:12px 16px; border-radius:999px;
+      text-decoration:none; border:1px solid var(--line);
+      font-weight:700;
+      background:#fff;
     }
     .btn.primary{background:var(--navy); color:#fff; border-color:var(--navy);}
-    .btn.ghost{background:#fff;}
-
-    /* New: "highlight" style for Upwork + Fiverr */
-    .btn.highlight{
-      background:linear-gradient(180deg, #ffffff, #f6f9ff);
-      border-color: rgba(11,42,74,.22);
-      box-shadow: 0 10px 26px rgba(11,42,74,.10);
+    .btn.ghost{background:transparent;}
+    .chip{
+      display:inline-flex; align-items:center;
+      padding:6px 10px; border-radius:999px;
+      background:rgba(18,59,102,.08);
+      color:var(--navy2);
+      font-size:12px; font-weight:800;
+      letter-spacing:.02em;
     }
-    .btn.highlight:hover{transform: translateY(-1px);}
-    .btn.highlight:active{transform: translateY(0);}
 
+    /* Top nav */
     header{
-      background: linear-gradient(180deg, var(--sky), #fff);
+      background: linear-gradient(180deg, var(--sky), #fff 70%);
       border-bottom:1px solid var(--line);
     }
-    .topbar{
+    .nav{
       padding:16px 0;
       display:flex; align-items:center; justify-content:space-between; gap:12px;
     }
     .brand{
       display:flex; flex-direction:column; gap:2px;
     }
-    .brand .name{font-weight:800; letter-spacing:.02em}
+    .brand .name{font-weight:900; letter-spacing:.02em}
     .brand .role{font-size:12px; color:var(--muted)}
-    .hero{padding:42px 0 36px; display:grid; gap:14px; align-items:center;}
-    .kicker{letter-spacing:.12em; text-transform:uppercase; font-size:12px; color:var(--navy2); font-weight:800;}
-    h1{margin:0; font-size:34px; line-height:1.12;}
-    .sub{margin:0; color:var(--muted); line-height:1.65; max-width:70ch;}
-    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;}
-    section{padding:34px 0;}
-    .grid{display:grid; gap:16px;}
-    .cards{grid-template-columns:repeat(12, 1fr);}
+    .navlinks{display:flex; gap:10px; flex-wrap:wrap;}
+
+    /* Hero (image-first) */
+    .hero{
+      padding:26px 0 44px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:18px;
+      align-items:center;
+    }
+    h1{
+      margin:10px 0 0;
+      font-size:36px;
+      line-height:1.12;
+      letter-spacing:-.02em;
+    }
+    .sub{
+      margin:10px 0 0;
+      color:var(--muted);
+      line-height:1.65;
+      max-width:62ch;
+    }
+    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;}
+    .hero-card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:var(--card);
+      box-shadow:0 10px 28px rgba(11,42,74,.08);
+      overflow:hidden;
+    }
+    .hero-img{
+      width:100%;
+      aspect-ratio: 4 / 3;
+      background:#F3F7FF;
+      display:block;
+      object-fit:cover;
+    }
+    .hero-caption{
+      padding:12px 14px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    /* Sections */
+    section{padding:44px 0;}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:16px;
+      margin-bottom:14px;
+    }
+    .section-title h2{margin:0; font-size:20px; letter-spacing:-.01em}
+    .section-title p{margin:0; color:var(--muted); line-height:1.6; max-width:80ch}
+
+    /* Cards grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:16px;
+    }
     .card{
       border:1px solid var(--line);
       border-radius:var(--radius);
+      background:var(--card);
       padding:16px;
-      background:#fff;
-      box-shadow: 0 6px 20px rgba(11,42,74,.06);
+      box-shadow:0 8px 22px rgba(11,42,74,.06);
     }
-    .col6{grid-column:span 6;}
     .col4{grid-column:span 4;}
-    .col8{grid-column:span 8;}
-    h2{margin:0 0 10px; font-size:18px;}
-    h3{margin:0 0 6px; font-size:15px;}
-    ul{margin:8px 0 0; padding-left:18px; color:var(--muted); line-height:1.65;}
-    .section-title{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:12px;}
-    .section-title p{margin:0; color:var(--muted); line-height:1.65; max-width:80ch;}
-    .band{
-      background:var(--navy);
-      color:#fff;
-      border-top:1px solid rgba(255,255,255,.12);
-      border-bottom:1px solid rgba(255,255,255,.12);
+    .col6{grid-column:span 6;}
+    .col12{grid-column:span 12;}
+    .card h3{margin:0 0 6px; font-size:16px}
+    .card p{margin:0; color:var(--muted); line-height:1.6}
+    .icon{
+      width:38px; height:38px; border-radius:12px;
+      background:rgba(11,42,74,.08);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--navy2);
+      font-weight:900;
+      margin-bottom:10px;
     }
-    .band .muted{color:rgba(255,255,255,.82); line-height:1.6}
-    .pill{
-      display:inline-block; padding:6px 10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.18); font-size:12px; font-weight:750;
-      letter-spacing:.02em;
+
+    /* Process */
+    .process{
+      background: #fff;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+    }
+    .step{
+      display:flex; gap:12px; align-items:flex-start;
+    }
+    .step .num{
+      width:34px; height:34px; border-radius:12px;
+      background:var(--navy); color:#fff;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900; flex:0 0 auto;
     }
 
     /* Portfolio */
@@ -102,37 +167,58 @@
       border-radius:var(--radius);
       overflow:hidden;
       background:#fff;
+      box-shadow:0 8px 22px rgba(11,42,74,.06);
     }
     .thumb{
       width:100%;
       aspect-ratio:16/9;
       border:0;
-      background:#F3F6FB;
+      background:#F3F7FF;
       display:block;
     }
     .meta{padding:12px 14px;}
-    .meta .title{font-weight:800;}
-    .meta .desc{margin-top:4px; color:var(--muted); font-size:13px; line-height:1.55;}
+    .meta .title{font-weight:900}
+    .meta .desc{margin-top:4px; color:var(--muted); font-size:13px; line-height:1.55}
     .tag{
-      display:inline-block; margin-top:8px; font-size:12px; color:var(--navy2);
-      font-weight:800;
+      display:inline-block; margin-top:8px; font-size:12px;
+      color:var(--navy2); font-weight:900;
     }
 
-    /* New: contact buttons layout */
-    .contact-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:10px;
+    /* Logos / industries */
+    .pill-row{display:flex; flex-wrap:wrap; gap:10px;}
+    .pill{
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:#fff;
+      color:var(--muted);
+      font-weight:700;
+      box-shadow:0 6px 18px rgba(11,42,74,.04);
     }
 
-    footer{padding:22px 0 46px; color:var(--muted); border-top:1px solid var(--line);}
+    /* Contact */
+    .contact{
+      background: linear-gradient(180deg, #fff, var(--sky));
+      border-top:1px solid var(--line);
+    }
+    .contact-box{
+      display:flex; flex-direction:column; gap:10px;
+      color:var(--muted);
+      line-height:1.7;
+    }
+    .contact-box b{color:var(--ink)}
+    footer{
+      padding:22px 0 46px;
+      color:var(--muted);
+      border-top:1px solid var(--line);
+    }
 
     @media (max-width: 980px){
-      h1{font-size:28px}
-      .col6,.col4,.col8{grid-column:1/-1}
+      .hero{grid-template-columns:1fr; padding-bottom:32px;}
+      h1{font-size:30px}
+      .col4,.col6,.col12{grid-column:1/-1}
       .portfolio{grid-template-columns:1fr}
-      .topbar{flex-direction:column; align-items:flex-start}
+      .nav{flex-direction:column; align-items:flex-start}
     }
   </style>
 </head>
@@ -141,75 +227,123 @@
 
 <header>
   <div class="wrap">
-    <div class="topbar">
+    <div class="nav">
       <div class="brand">
         <div class="name">CHUCHU LEARNING</div>
-        <div class="role">eLearning Course Developer • Instructional Design</div>
+        <div class="role">Interactive eLearning • Training Simulations • Storyline/Rise</div>
       </div>
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <div class="navlinks">
+        <a class="btn ghost" href="#services">Services</a>
+        <a class="btn ghost" href="#process">Process</a>
         <a class="btn ghost" href="#work">Portfolio</a>
-        <a class="btn highlight" href="https://www.upwork.com/freelancers/~01325ad22d4e88770b?s=1031626805600567296" target="_blank" rel="noopener">Upwork</a>
-        <a class="btn highlight" href="https://www.fiverr.com/chuchu916?public_mode=true" target="_blank" rel="noopener">Fiverr</a>
         <a class="btn primary" href="#contact">Contact</a>
       </div>
     </div>
 
     <div class="hero">
-      <div class="kicker">Interactive training that improves performance</div>
-      <h1>Custom eLearning & training simulations for Food, Retail, and Corporate teams</h1>
-      <p class="sub">
-        I design interactive, practical learning experiences that help frontline staff learn faster,
-        practice safely, and perform consistently — beyond static slides.
-      </p>
-      <div class="cta">
-        <a class="btn primary" href="#work">View demo projects</a>
-        <a class="btn ghost" href="#contact">Request a quote</a>
-        <a class="btn highlight" href="https://www.upwork.com/freelancers/~01325ad22d4e88770b?s=1031626805600567296" target="_blank" rel="noopener">Hire on Upwork</a>
-        <a class="btn highlight" href="https://www.fiverr.com/chuchu916?public_mode=true" target="_blank" rel="noopener">Order on Fiverr</a>
+      <div>
+        <span class="chip">Blue / navy brand • clean & modern</span>
+        <h1>Interactive eLearning that trains real-world performance</h1>
+        <p class="sub">
+          I build engaging eLearning and training simulations for food, retail, and corporate teams —
+          designed for practice, not passive slides.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="#work">View portfolio</a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <!-- Replace this image with your own hero visual (laptop mockup / eLearning screenshot) -->
+        <img class="hero-img" src="HERO_IMAGE_URL_HERE" alt="eLearning preview" />
+        <div class="hero-caption">
+          Tip: Use a clean mockup image (laptop/tablet) or a polished screenshot from your best module.
+        </div>
       </div>
     </div>
   </div>
 </header>
 
-<section>
-  <div class="wrap grid cards">
-    <div class="card col6">
-      <h2>Services</h2>
-      <ul>
-        <li><b>eLearning Development:</b> Storyline / Rise builds, interactions, quizzes, click-to-reveal, layers</li>
-        <li><b>Training Simulations:</b> step-by-step SOP practice (prep, cooking, beverage workflow)</li>
-        <li><b>Scenario-based Learning:</b> customer service, communication, workplace behavior</li>
-        <li><b>Delivery:</b> SCORM/LMS-ready packages or web demos</li>
-      </ul>
+<section id="services">
+  <div class="wrap">
+    <div class="section-title">
+      <div>
+        <h2>Services</h2>
+        <p>Short, clear, and visual. Each service is one line so it stays easy to edit.</p>
+      </div>
     </div>
-    <div class="card col6">
-      <h2>Ideal for</h2>
-      <ul>
-        <li>F&B chains, cafés, milk tea brands, and kitchen/front-of-house operations</li>
-        <li>Retail onboarding and standardized SOP training</li>
-        <li>Corporate compliance/awareness training that needs to be engaging</li>
-      </ul>
+
+    <div class="grid">
+      <div class="card col4">
+        <div class="icon">E</div>
+        <h3>eLearning Development</h3>
+        <p>Storyline/Rise builds with modern interactions and clean UI.</p>
+      </div>
+
+      <div class="card col4">
+        <div class="icon">S</div>
+        <h3>Training Simulations</h3>
+        <p>Step-by-step SOP practice for kitchen, barista, and operations.</p>
+      </div>
+
+      <div class="card col4">
+        <div class="icon">C</div>
+        <h3>Scenario-Based Training</h3>
+        <p>Branching decisions for service, communication, and workplace behavior.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="band">
-  <div class="wrap" style="padding:28px 20px;">
-    <div class="grid cards" style="gap:12px;">
-      <div class="card col4" style="background:transparent; border-color:rgba(255,255,255,.18); box-shadow:none;">
-        <div class="pill">Practice-first</div>
-        <h2 style="color:#fff; margin-top:10px;">Built for real-world behavior</h2>
-        <div class="muted">Design focuses on doing, deciding, and practicing — not passive reading.</div>
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="section-title">
+      <div>
+        <h2>How We Work</h2>
+        <p>Four steps. Minimal text. Easy for clients to understand and trust.</p>
       </div>
-      <div class="card col4" style="background:transparent; border-color:rgba(255,255,255,.18); box-shadow:none;">
-        <div class="pill">Clear demos</div>
-        <h2 style="color:#fff; margin-top:10px;">Fast review for stakeholders</h2>
-        <div class="muted">Walkthrough videos make it easy to evaluate quality and fit.</div>
+    </div>
+
+    <div class="grid">
+      <div class="card col6">
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            <h3>Align on goals</h3>
+            <p>Audience, outcomes, constraints (LMS, timeline, languages).</p>
+          </div>
+        </div>
       </div>
-      <div class="card col4" style="background:transparent; border-color:rgba(255,255,255,.18); box-shadow:none;">
-        <div class="pill">Reliable delivery</div>
-        <h2 style="color:#fff; margin-top:10px;">Smooth collaboration</h2>
-        <div class="muted">Structured process, clear communication, and organized handoff.</div>
+
+      <div class="card col6">
+        <div class="step">
+          <div class="num">2</div>
+          <div>
+            <h3>Design the experience</h3>
+            <p>Structure + one sample interaction to confirm direction.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col6">
+        <div class="step">
+          <div class="num">3</div>
+          <div>
+            <h3>Build & iterate</h3>
+            <p>Develop modules, review rounds, refine visuals and flow.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card col6">
+        <div class="step">
+          <div class="num">4</div>
+          <div>
+            <h3>Deliver & support</h3>
+            <p>SCORM/web delivery, handoff notes, light post-launch support.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -219,88 +353,78 @@
   <div class="wrap">
     <div class="section-title">
       <div>
-        <h2>Portfolio (8–10 demos)</h2>
-        <p>
-          Replace the placeholder video URLs with your own YouTube/Vimeo links.
-          Keep titles focused on the training outcome.
-        </p>
+        <h2>Portfolio</h2>
+        <p>Replace the 10 placeholder embed URLs with your YouTube/Vimeo embeds.</p>
       </div>
     </div>
 
     <div class="portfolio">
-      <!-- SLOT 01 -->
+      <!-- Replace VIDEO_EMBED_URL_01 with: https://www.youtube.com/embed/VIDEO_ID -->
       <div class="tile">
-        <iframe class="thumb" src="VIDEO_URL_01" allowfullscreen></iframe>
+        <iframe class="thumb" src="VIDEO_EMBED_URL_01" allowfullscreen></iframe>
         <div class="meta">
           <div class="title">Food Safety Training</div>
           <div class="desc">Interactive practice module for hygiene and quality standards.</div>
-          <div class="tag">Training Simulation</div>
+          <div class="tag">Simulation</div>
         </div>
       </div>
 
-      <!-- SLOT 02 -->
       <div class="tile">
-        <iframe class="thumb" src="VIDEO_URL_02" allowfullscreen></iframe>
+        <iframe class="thumb" src="VIDEO_EMBED_URL_02" allowfullscreen></iframe>
         <div class="meta">
-          <div class="title">Kitchen SOP Simulation</div>
+          <div class="title">Kitchen SOP Workflow</div>
           <div class="desc">Step-by-step workflow practice to reduce errors and rework.</div>
-          <div class="tag">Process Training</div>
+          <div class="tag">Operations</div>
         </div>
       </div>
 
-      <!-- SLOT 03 -->
       <div class="tile">
-        <iframe class="thumb" src="VIDEO_URL_03" allowfullscreen></iframe>
+        <iframe class="thumb" src="VIDEO_EMBED_URL_03" allowfullscreen></iframe>
         <div class="meta">
           <div class="title">Beverage / Barista Workflow</div>
           <div class="desc">Order-to-delivery simulation for speed and consistency.</div>
-          <div class="tag">F&B Operations</div>
+          <div class="tag">F&amp;B</div>
         </div>
       </div>
 
-      <!-- SLOT 04 -->
       <div class="tile">
-        <iframe class="thumb" src="VIDEO_URL_04" allowfullscreen></iframe>
+        <iframe class="thumb" src="VIDEO_EMBED_URL_04" allowfullscreen></iframe>
         <div class="meta">
           <div class="title">Customer Service Scenarios</div>
-          <div class="desc">Branching scenarios for difficult customer interactions.</div>
-          <div class="tag">Scenario-based</div>
+          <div class="desc">Branching decisions for challenging customer interactions.</div>
+          <div class="tag">Scenario</div>
         </div>
       </div>
 
-      <!-- SLOT 05 -->
       <div class="tile">
-        <iframe class="thumb" src="VIDEO_URL_05" allowfullscreen></iframe>
+        <iframe class="thumb" src="VIDEO_EMBED_URL_05" allowfullscreen></iframe>
         <div class="meta">
           <div class="title">Communication Microlearning</div>
-          <div class="desc">Short interactive lessons with quick checks for understanding.</div>
+          <div class="desc">Short lessons with quick checks for understanding.</div>
           <div class="tag">Soft Skills</div>
         </div>
       </div>
 
-      <!-- SLOT 06 -->
       <div class="tile">
-        <iframe class="thumb" src="VIDEO_URL_06" allowfullscreen></iframe>
+        <iframe class="thumb" src="VIDEO_EMBED_URL_06" allowfullscreen></iframe>
         <div class="meta">
-          <div class="title">Compliance / Awareness Module</div>
-          <div class="desc">Engaging compliance training with interaction patterns.</div>
+          <div class="title">Compliance / Awareness</div>
+          <div class="desc">Engaging compliance training with modern interactions.</div>
           <div class="tag">Corporate</div>
         </div>
       </div>
 
-      <!-- SLOT 07 -->
       <div class="tile">
-        <iframe class="thumb" src="VIDEO_URL_07" allowfullscreen></iframe>
+        <iframe class="thumb" src="VIDEO_EMBED_URL_07" allowfullscreen></iframe>
         <div class="meta">
           <div class="title">Interactive Quiz Game</div>
-          <div class="desc">Game-style knowledge checks to increase completion rates.</div>
-          <div class="tag">Game-based</div>
+          <div class="desc">Game-style checks to improve completion and recall.</div>
+          <div class="tag">Game</div>
         </div>
       </div>
 
-      <!-- SLOT 08 -->
       <div class="tile">
-        <iframe class="thumb" src="VIDEO_URL_08" allowfullscreen></iframe>
+        <iframe class="thumb" src="VIDEO_EMBED_URL_08" allowfullscreen></iframe>
         <div class="meta">
           <div class="title">Onboarding Module</div>
           <div class="desc">Role-ready onboarding with practice activities and quiz.</div>
@@ -308,22 +432,20 @@
         </div>
       </div>
 
-      <!-- SLOT 09 -->
       <div class="tile">
-        <iframe class="thumb" src="VIDEO_URL_09" allowfullscreen></iframe>
+        <iframe class="thumb" src="VIDEO_EMBED_URL_09" allowfullscreen></iframe>
         <div class="meta">
-          <div class="title">Product Knowledge Training</div>
-          <div class="desc">Interactive product training with visuals and quick recall.</div>
+          <div class="title">Product Knowledge</div>
+          <div class="desc">Interactive product training with quick recall moments.</div>
           <div class="tag">Product</div>
         </div>
       </div>
 
-      <!-- SLOT 10 -->
       <div class="tile">
-        <iframe class="thumb" src="VIDEO_URL_10" allowfullscreen></iframe>
+        <iframe class="thumb" src="VIDEO_EMBED_URL_10" allowfullscreen></iframe>
         <div class="meta">
-          <div class="title">Custom Interaction Showcase</div>
-          <div class="desc">Examples of layers, drag-and-drop, and click-to-reveal patterns.</div>
+          <div class="title">Interaction Showcase</div>
+          <div class="desc">Layers, drag-and-drop, and click-to-reveal patterns.</div>
           <div class="tag">Interactions</div>
         </div>
       </div>
@@ -331,29 +453,51 @@
   </div>
 </section>
 
-<section id="contact">
-  <div class="wrap grid cards">
-    <div class="card col8">
-      <h2>How we can work together</h2>
-      <ul>
-        <li>Share your training goals, audience, and constraints (LMS, timeline, languages).</li>
-        <li>I propose a structure + one sample interaction to align on direction.</li>
-        <li>Development + review cycles, then final delivery (SCORM/web/demo).</li>
-      </ul>
+<section>
+  <div class="wrap">
+    <div class="section-title">
+      <div>
+        <h2>Industries</h2>
+        <p>Quick credibility. Keep it simple.</p>
+      </div>
     </div>
 
-    <div class="card col4">
-      <h2>Contact</h2>
-      <div style="color:var(--muted); line-height:1.7;">
-        <div><b>Email:</b> <a href="mailto:chuchu916elearning@gmail.com">chuchu916elearning@gmail.com</a></div>
-        <div><b>WhatsApp:</b> <a href="https://wa.me/84972525073" target="_blank" rel="noopener">+84 972 525 073</a></div>
-        <div><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/chau-trinh-bao-0bb410164/" target="_blank" rel="noopener">chau-trinh-bao</a></div>
+    <div class="pill-row">
+      <div class="pill">Food &amp; Beverage</div>
+      <div class="pill">Retail</div>
+      <div class="pill">Hospitality</div>
+      <div class="pill">Corporate Training</div>
+      <div class="pill">Compliance &amp; Awareness</div>
+      <div class="pill">Customer Service</div>
+    </div>
+  </div>
+</section>
 
-        <div class="contact-actions">
-          <a class="btn primary" href="mailto:chuchu916elearning@gmail.com?subject=eLearning%20Project%20Inquiry">Email me</a>
-          <a class="btn ghost" href="https://wa.me/84972525073" target="_blank" rel="noopener">WhatsApp</a>
-          <a class="btn highlight" href="https://www.upwork.com/freelancers/~01325ad22d4e88770b?s=1031626805600567296" target="_blank" rel="noopener">Upwork</a>
-          <a class="btn highlight" href="https://www.fiverr.com/chuchu916?public_mode=true" target="_blank" rel="noopener">Fiverr</a>
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="section-title">
+      <div>
+        <h2>Contact</h2>
+        <p>One place for clients to reach you fast.</p>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card col6">
+        <h3>Let’s discuss your training goals</h3>
+        <p style="margin-top:6px;">Share audience, topic, timeline, and preferred delivery (LMS/web). I’ll respond with a quick plan and quote range.</p>
+        <div class="cta" style="margin-top:14px;">
+          <a class="btn primary" href="mailto:chuchu916elearning@gmail.com?subject=eLearning%20Project%20Inquiry">Email</a>
+          <a class="btn" href="https://wa.me/84972525073" target="_blank" rel="noreferrer">WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="card col6">
+        <div class="contact-box">
+          <div><b>Email:</b> chuchu916elearning@gmail.com</div>
+          <div><b>WhatsApp:</b> +84 972 525 073</div>
+          <div><b>Website:</b> www.chuchuelearning.com</div>
+          <div><b>Response time:</b> within 24–48 hours</div>
         </div>
       </div>
     </div>
